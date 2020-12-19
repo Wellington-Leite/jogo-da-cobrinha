@@ -1,0 +1,21 @@
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.jogo {
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.jogo h1 {
+  color: rgb(16, 129, 6);
+  font-weight: bold;
+  font-size: 40px;
+}

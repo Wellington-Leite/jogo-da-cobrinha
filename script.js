@@ -1,4 +1,5 @@
 let canvas = document.getElementById("snake");
+let placar = document.getElementById("placar");
 let context = canvas.getContext("2d");
 let box = 32;
 let snake = [];
@@ -49,6 +50,15 @@ function inicarJogo() {
   if (snake[0].y > 15 * box && direction == "down") snake[0].y = 0;
   if (snake[0].y < 0 && direction == "up") snake[0].y = 16 * box;
 
+  //Verificando se a cobrinha esta se chocando com o corpo
+  for (i = 1; i < snake.length; i++) {
+    if (snake[0].x == snake[i].x && snake[0].y == snake[i].y) {
+      //parar a funçao jogo
+      clearInterval(jogo);
+      alert("Game Over. :(");
+    }
+  }
+
   criarBG();
   criarCobrinha();
   drawFood();
@@ -63,7 +73,12 @@ function inicarJogo() {
   if (direction == "up") snakeY -= box;
   if (direction == "down") snakeY += box;
 
-  snake.pop(); //Retirando o Ultimo elemento
+  if (snakeX != food.x || snakeY != food.y) {
+    snake.pop(); //Retirando o Ultimo elemento
+  } else {
+    food.x = Math.floor(Math.random() * 15 + 1) * box;
+    food.y = Math.floor(Math.random() * 15 + 1) * box;
+  }
 
   let newHead = {
     x: snakeX,
@@ -72,6 +87,7 @@ function inicarJogo() {
 
   //Acrescentando um elemento a frente
   snake.unshift(newHead);
+  placar.innerHTML = `<h2>${snake.length}</h2>`;
 }
 
-let jogo = setInterval(inicarJogo, 500);
+let jogo = setInterval(inicarJogo, 200);
