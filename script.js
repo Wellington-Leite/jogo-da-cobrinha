@@ -1,6 +1,8 @@
 let canvas = document.getElementById("snake");
-let placar = document.getElementById("placar");
+let divPlacar = document.getElementById("placar");
+let divRecorde = document.getElementById("recorde");
 let context = canvas.getContext("2d");
+let recorde = 1;
 let box = 32;
 let snake = [];
 snake[0] = {
@@ -54,8 +56,16 @@ function inicarJogo() {
   for (i = 1; i < snake.length; i++) {
     if (snake[0].x == snake[i].x && snake[0].y == snake[i].y) {
       //parar a funçao jogo
+      recorde = snake.length;
       clearInterval(jogo);
       alert("Game Over. :(");
+      snake = [];
+      snake[0] = {
+        x: 8 * box,
+        y: 8 * box,
+      };
+
+      jogo = setInterval(inicarJogo, 200);
     }
   }
 
@@ -87,7 +97,8 @@ function inicarJogo() {
 
   //Acrescentando um elemento a frente
   snake.unshift(newHead);
-  placar.innerHTML = `<h2>${snake.length}</h2>`;
+  divPlacar.innerHTML = `<h2>${snake.length}</h2>`;
+  divRecorde.innerHTML = `<h2>${recorde}</h2>`;
 }
 
 let jogo = setInterval(inicarJogo, 200);
