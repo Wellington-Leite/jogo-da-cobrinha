@@ -1,13 +1,12 @@
 body {
   background-color: rgba(0, 0, 0, 0.877);
-  color: rgb(0, 255, 0);
+  color: rgb(244, 247, 244);
 }
 
 .container {
   width: 100%;
   display: flex;
   justify-content: center;
-  align-items: top;
   flex-direction: row;
 }
 
@@ -22,6 +21,10 @@ body {
 .jogo h1 {
   font-weight: bold;
   font-size: 40px;
+}
+
+.laterais {
+  width: 200px;
 }
 
 .copyright {
